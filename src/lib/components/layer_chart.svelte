@@ -96,18 +96,12 @@
     height: auto;
   }
 
-  .inbar {
+  .intbar {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     background: papayawhip;
-  }
-
-  .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
   }
 
   .int-link {
