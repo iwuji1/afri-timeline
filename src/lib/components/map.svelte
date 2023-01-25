@@ -5,11 +5,15 @@
   import { onMount } from 'svelte';
   import mapboxgl from "mapbox-gl";
   import 'mapbox-gl/dist/mapbox-gl.css';
-  import Legend from '$lib/components/map_legend.svelte';
 
-  import dots from "$lib/Data/africa.json"
+  import Legend from '$lib/components/map_legend.svelte';
+  import Tooltip from '$lib/components/map_tooltip.svelte';
+  import dots from "$lib/Data/africa.json";
 
   let map;
+  let mapx;
+  let mapy;
+  let hoverData;
   let width = 1000;
   let height = 800;
   const subgroups = ["United_States", "Britain", "Italy", "Britain_Egypt", "France", "Spain", "Belgium", "Portugal", "South_Africa", "Ethiopia"];
@@ -24,16 +28,13 @@
         style: 'mapbox://styles/mapbox/streets-v9',
         center: [15, -6],
         liglatbounds: ([-73.9876, 40.7661], [-73.9397, 40.8002]),
-        zoom: 3,
+        zoom: 2.5,
         interactive: false,
     });
 
     // Projection method:
     // Project geojson coordinate to the map's current state
-
-
   })
-
 </script>
 
 <style>
@@ -57,19 +58,38 @@
   }
 
 </style>
-<div class="map-container">
+<div class="map-container"
+  bind:clientWidth={width}
+  on:mouseleave={() => {
+    hoverData = null;
+    }}>
   <div id="map"></div>
-    <svg {width} {height}>
+    <svg width="100%" {height}>
     {#each dots as d}
       {#if map}
         <circle class="map-dots"
           cx={map.project(d.geometry.coordinates).x}
           cy={map.project(d.geometry.coordinates).y}
-          r="7"
+          r="5"
           fill={cScale(d.properties.colonizer)}
+          stroke={hoverData && hoverData == d ?"#F7931E":"#800080" }
+          stroke-width={hoverData && hoverData == d ?"2":"0" }
+          on:mouseover={() => {
+            hoverData = d
+            mapx = map.project(d.geometry.coordinates).x
+            mapy = map.project(d.geometry.coordinates).y
+            }}
+          on:focus={() => {
+            hoverData = d
+            mapx = map.project(d.geometry.coordinates).x
+            mapy = map.project(d.geometry.coordinates).y
+            }}
         />
       {/if}
     {/each}
     </svg>
   <Legend data={subgroups} {cScale}/>
+  {#if hoverData}
+    <Tooltip data={hoverData} {mapx} {mapy}/>
+  {/if}
 </div>
