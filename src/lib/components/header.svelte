@@ -8,6 +8,12 @@ header {
   z-index: 20;
 }
 
+@media screen and (max-width: 1200px) {
+  header {
+    position: relative;
+  }
+}
+
 .navbar {
   display: flex;
   flex-wrap: wrap;

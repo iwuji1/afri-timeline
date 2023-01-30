@@ -14,8 +14,17 @@
     height: auto;
   }
 
-  .leg-text {
+  @media screen and (max-width: 1200px) {
+    .legend {
+      position: absolute;
+      z-index: 5;
+    }
+  }
 
+  @media screen and (max-width: 900px) {
+    .legend {
+      visibility: hidden;
+    }
   }
 
 </style>

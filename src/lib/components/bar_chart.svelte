@@ -50,6 +50,15 @@
     font-family: sans-serif;
   }
 
+  @media screen and (max-width: 1000px) {
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
+
+  }
+
 
 </style>
 

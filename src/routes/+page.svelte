@@ -120,6 +120,37 @@
     height: 100vh;
   }
 
+  @media screen and (max-width:1200px) {
+    .title {
+      font-size: 18pt;
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      height: auto;
+      text-align: center;
+    }
+
+    .container :nth-child(1) { order: 2; }
+
+    .v-container {
+      text-align: center;
+    }
+
+    .map-text {
+      width: 60vw;
+      font-size: 12pt;
+    }
+
+    .p-container {
+      visibility: hidden;
+    }
+  }
+
   .v-container {
     display: flex;
     padding-left: 5%;

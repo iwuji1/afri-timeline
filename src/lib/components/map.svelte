@@ -53,6 +53,12 @@
     padding: 0;
   }
 
+  @media screen and (max-width: 1000px) {
+    /* #map {
+      width: 100%;
+    } */
+  }
+
   svg {
     position: absolute;
   }

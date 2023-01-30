@@ -33,13 +33,19 @@
    font-family: sans-serif;
  }
 
- .chart-txt {
-   font-weight: 100;
+ @media screen and (max-width: 1200px) {
+   .chart-container {
+     flex-direction: column;
+   }
+
+   svg {
+     width: 50%;
+     height: auto;
+   }
  }
 
- text.chart-txt {
-   /* writing-mode: vertical-rl;
-   text-orientation: mixed; */
+ .chart-txt {
+   font-weight: 100;
  }
 
  h1 {
