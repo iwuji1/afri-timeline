@@ -17,6 +17,9 @@
   "description":"The new commers & Future"}
   ]
 
+  let clickData = {"theme":"1847 - 1950",
+"description":"Stiring the pot"};
+
   // window.onscroll = function() {myFunction()};
   //
   // var header = document.getElementById("intbar");
@@ -29,19 +32,23 @@
   //     header.classList.remove("sticky");
   //   }
   // }
+
+  let visible = true;
+
+  function toggleVissible() {
+      visible = !visible
+  }
+
 </script>
 
 <style>
 
-  * {
-    box-sizing: border-box;
-  }
   .div-container {
     display: flex;
     flex-direction: column;
     margin: auto;
-    background: papayawhip;
     font-family:sans-serif;
+    width: 100%;
   }
 
   .div-container h1 {
@@ -66,6 +73,7 @@
   .left-content {
     flex: 50%;
     margin:auto;
+    padding-left: 5%;
   }
 
   .right-content {
@@ -73,7 +81,12 @@
     justify-content: start;
     grid-template-columns: auto auto auto;
     gap: 10px;
-    padding: 10px;
+  }
+
+  .intro-txt {
+    margin-left: 2%;
+    margin-right: 5%;
+    text-align: center;
   }
 
   .flag-spec h1{
@@ -117,39 +130,98 @@
     opacity: 0.75;
   }
 
+  ul {
+    list-style: none;
+  }
+
+  .image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .image-gallery li {
+    flex-basis: 250px; /*width: 350px;*/
+    position: relative;
+    cursor: pointer;
+  }
+
+  .image-gallery::after {
+    content: "";
+    flex-basis: 250px;
+  }
+
+  .image-gallery li img {
+    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 5px;
+  }
+
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(57, 57, 57, 0.502);
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    transition: all 0.2s 0.1s ease-in-out;
+    color: #fff;
+    border-radius: 5px;
+    /* center overlay text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* hover */
+  .image-gallery li:hover .overlay {
+    transform: scale(1);
+  }
+
 </style>
 
 <div class="div-container">
-  <div>
+  <div class= "intro-txt">
     <h1>What are we looking at?</h1>
     <p>What we have been looking at in the project is the reimagining of a table with static dates of African Independence, to something a bit more dynamic
     that tells a story. After going through the previous visualizations, I think a story does come to light, by splitting the various years into specific
     buckets, we can see various themes in the journey to an Independent Africa. Here the years are packaged into year buckets with the corresponding countries
     represented by their flag. Can you guess which countries come under which bucket?
     </p>
+
+    <p><b>Click on the buckets below to find out</b></p>
     <div id="intbar" class="intbar">
       {#each year_themes as t}
-          <a class="int-link" href="#{t.description}">{t.description}</a>
+          <a class="int-link" on:click={() => {clickData = t}} >{t.description}</a>
       {/each}
     </div>
   </div>
 
-
   {#each year_themes as t}
-    <div id={t.description} class="flag-spec">
-      <div class="left-content">
-        <h1>{t.theme}</h1>
-        <p>{t.description}</p>
-      </div>
-        <div class="right-content">
-          {#each Data as d}
-            {#if d.Theme == t.description}
-                <img class="flag" src={d.Img_URL} alt="" />
-                <text class="leg-text" text-anchor="middle">{d.Country}</text>
-
-            {/if}
-          {/each}
-        </div>
-      </div>
+    {#if clickData.description == t.description}
+      <div id={t.description} class="flag-spec">
+          <div class="left-content">
+            <h1>{t.theme}</h1>
+            <p>{t.description}</p>
+          </div>
+            <div>
+              <ul class="image-gallery">
+              {#each Data as d}
+                {#if d.Theme == t.description}
+                    <li>
+                      <img class="flag" src={d.Img_URL} alt="" />
+                      <div class="overlay"><span>{d.Country}</span></div>
+                    </li>
+                {/if}
+              {/each}
+              </ul>
+            </div>
+          </div>
+        {/if}
   {/each}
 </div>

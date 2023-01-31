@@ -9,8 +9,8 @@
 <style>
 
   .legend{
-    background: #ffffff;
-    width: 100%;
+    background: #FAF9F6;
+    width: 20%;
     height: auto;
   }
 

@@ -41,15 +41,14 @@
   .map-container {
     position: relative;
     width: 100vw;
-    height: auto;
+    height: 100vh;
     font-family: sans-serif;
   }
 
   #map {
     position: absolute;
-    width: 100vw;
-    height: 100vh;
-    margin:0;
+    width: 100%;
+    height: 100%;
     padding: 0;
   }
 
@@ -61,6 +60,7 @@
 
   svg {
     position: absolute;
+    z-index: 10;
   }
 
 </style>

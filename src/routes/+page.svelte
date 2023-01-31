@@ -75,7 +75,7 @@
       scrollTrigger: {
         trigger: '.map-container',
         start: 'top top',
-        end: '+=80%',
+        end: '+=60%',
         scrub: true,
         pin: true,
         anticipatePin: 1,
@@ -83,7 +83,7 @@
       }
     });
 
-    map_timeline.to(".map-text", { duration: 0.33, opacity: 1, y:"50%" })
+    map_timeline.to(".map-text", { duration: 0.33, opacity: 1, y:"40%" })
     .to(".map-text", { duration: 0.33, opacity: 0, y:"0%" }, 0.66);
 
     // gsap.to(".panel:not(:last-child)", {
@@ -107,6 +107,10 @@
 
 <style>
 
+  #container {
+    background-color: #FAF9F6;
+  }
+
   .title {
     margin: auto;
     font-family:sans-serif;
@@ -115,7 +119,6 @@
   .container {
     display: flex;
     padding-left: 5%;
-    padding-right: 5%;
     margin: auto;
     height: 100vh;
   }
@@ -130,12 +133,14 @@
     .container {
       flex-direction: column;
       justify-content: center;
-      width: 100%;
+      width: 100vw;
       height: auto;
       text-align: center;
     }
 
-    .container :nth-child(1) { order: 2; }
+    .container :nth-child(1) {
+      order: 2;
+    }
 
     .v-container {
       text-align: center;
@@ -154,7 +159,6 @@
   .v-container {
     display: flex;
     padding-left: 5%;
-    padding-right: 5%;
     flex-direction: column;
     /* height: 100vh; */
   }
@@ -164,19 +168,22 @@
     flex-direction: column;
     padding: 0%;
     margin: 0%;
+    width: 100vw;
     height: 100vh;
   }
 
   .layer-container {
     display: flex;
-    margin: auto auto;
+    /* margin: auto auto; */
+    width: 100vw;
+    height: 100vh;
+    margin-top: 40%;
   }
 
   .p-container {
     flex: 100%;
     display: flex;
     padding-left: 5%;
-    padding-right: 5%;
     margin: auto;
     height: 100vh;
     margin: auto;
@@ -190,8 +197,8 @@
   .viz-text {
     flex: 70%;
     margin:auto;
-    padding-right: 10%;
-    font-size: 18pt;
+    padding-left: 5%;
+    font-size: 16pt;
     font-family: sans-serif;
 
   }
@@ -206,7 +213,7 @@
     margin-left: 35%;
     width: 30vw;
     text-align: center;
-    transform:translateY(100%);
+    transform:translateY(50%);
     opacity: 0;
   }
 
@@ -225,7 +232,6 @@
   .stack-text {
     flex: 70%;
     margin:auto;
-    padding-right: 10%;
     font-size: 18pt;
     font-family: sans-serif;
   }
@@ -247,6 +253,8 @@
       and perhaps visualize African independence in a different way.
       </p>
 
+      <p><b>This is best experienced on the desktop</b></p>
+
       <h1>I hope you enjoy scrolling!</h1>
 
     </div>
@@ -258,6 +266,9 @@
     </div>
     <div class="viz-text">
       <h1>Who were the Colonizers?</h1>
+
+      <p>This was one of the questions I asked when re-arranging the data, also was one fo the easiest insights to get!</p>
+
       <p>It doesn't take a history buff to not that much of the colonization of the African continent was attributed to the Europeans who went out into the
       world is such of resources and cheap labour. But who were the real forces driving the mission??</p>
 
@@ -270,6 +281,8 @@
   <section id="when" class="panel v-container">
     <div class="stack-text">
       <h1>When did African nations gain independence?</h1>
+
+      <p>In the original table, next to each country name is the date of independence,  whilst this may at first look like a long list of randon dates, when broken down next to the colonizers on the previous viz, a story starts to emerge.</p>
       <p>In this viz we arrange the data to understand what years nations became independent and who they gained interdependence from.
       You can definitely see leading up to 1960 the momentum that was happening as year after year of different nations getting theirs
       led to this major peak in 1960 where the majority of African nations got their independence. With Britain and France specifically
@@ -306,10 +319,10 @@
       </div>
     </div>
   </section>
-
+<!--
   <section id="how" class="p-container">
     <Period />
-  </section>
+  </section> -->
 
   <section id="what" class="layer-container">
     <Layer />
